@@ -1,0 +1,10 @@
+.card-centrada {
+  width: 30%;
+  align-items: center;
+}
+#contenedorLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
