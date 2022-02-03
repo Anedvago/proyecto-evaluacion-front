@@ -2,6 +2,10 @@ import { getLocaleDateFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ArticuloFact } from '../ArticuloFact';
 import { Cliente } from '../Cliente';
+import { Detalle } from '../Detalle';
+import { DetalleService } from '../detalle.service';
+import { Factura } from '../Factura';
+import { FacturaService } from '../factura.service';
 import { Producto } from '../Producto';
 
 @Component({
@@ -10,7 +14,7 @@ import { Producto } from '../Producto';
   styleUrls: ['./facturacion.component.css'],
 })
 export class FacturacionComponent implements OnInit {
-  constructor() {}
+  constructor(private serv: FacturaService, private serv2: DetalleService) {}
 
   ngOnInit() {}
 
@@ -29,6 +33,8 @@ export class FacturacionComponent implements OnInit {
   total: number;
 
   fecha: Date = new Date();
+
+  factura: Factura;
 
   establecerTotal() {
     let suma: number = 0;
@@ -61,5 +67,26 @@ export class FacturacionComponent implements OnInit {
   quitarArticulo(i: number) {
     this.productos.splice(i, 1);
     this.establecerTotal();
+  }
+
+  guardarFactura() {
+    let fact01 = new Factura(this.cliente, this.fecha);
+    let detalle;
+    this.serv.agregarNueva(fact01).subscribe(
+      (dato) => {
+        this.factura = dato;
+        for (let i = 0; i < this.productos.length; i++) {
+          detalle = new Detalle(
+            this.factura,
+            this.productos[i].producto,
+            this.productos[i].cantidad
+          );
+          this.serv2.agregarNuevo(detalle).subscribe((dato) => {});
+        }
+      },
+      (error) => {
+        alert('error en el sistema');
+      }
+    );
   }
 }
