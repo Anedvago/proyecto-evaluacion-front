@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h5>Busqueda de Productos</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <form class="row">
+          <div class="col-5">
+            <label for="exampleInputEmail1" class="form-label"
+              >Numero de referencia</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="numRef"
+              name="id"
+            />
+          </div>
+          <div class="col">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="buscarProd()"
+            >
+              Buscar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{ mensaje }}
+      </div>
+    </div>
+  </div>
+</div>

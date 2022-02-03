@@ -15,4 +15,23 @@ export class UsuarioServicioService {
   loginUsuario(user: UsuarioEnLogin): Observable<UsuarioEnApp> {
     return this.clienteHttp.post<UsuarioEnApp>(this.url + '/login', user);
   }
+
+  obtenerUsuarios(): Observable<UsuarioEnApp[]> {
+    return this.clienteHttp.get<UsuarioEnApp[]>(this.url + '/usuarios');
+  }
+
+  agregarNuevo(usuario: UsuarioEnApp) {
+    return this.clienteHttp.post(this.url + '/registro-usuarios', usuario);
+  }
+
+  modificar(usuario: UsuarioEnApp) {
+    return this.clienteHttp.put(
+      this.url + '/usuario/' + usuario.idUsuario,
+      usuario
+    );
+  }
+
+  eliminar(id: number) {
+    return this.clienteHttp.delete(this.url + '/usuario/' + id);
+  }
 }

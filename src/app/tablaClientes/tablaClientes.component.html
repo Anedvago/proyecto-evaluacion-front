@@ -7,16 +7,34 @@
       <th scope="col">Razon social</th>
       <th scope="col">Fecha de registro</th>
       <th scope="col">Estado</th>
+      <th scope="col">Modificar</th>
+      <th scope="col">Eliminar</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cliente of clientes; index as i">
-      <th scope="row">{{ i + 1 }}</th>
+    <tr *ngFor="let cliente of clientes">
+      <th scope="row">{{ cliente.cliente }}</th>
       <td>{{ cliente.tipoIdentificacion.descripcion }}</td>
       <td>{{ cliente.identificacion }}</td>
       <td>{{ cliente.razonSocial }}</td>
       <td>{{ cliente.fechaRegistro.toString().substr(0, 10) }}</td>
       <td>{{ cliente.estado }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="cargarDatosDeCliente(cliente.cliente)"
+        >
+          Modificar
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-danger"
+          (click)="eliminarCliente(cliente.cliente)"
+        >
+          Eliminar
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

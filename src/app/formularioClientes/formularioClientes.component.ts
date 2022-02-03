@@ -1,15 +1,89 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Cliente } from '../Cliente';
+import { ClienteServicioService } from '../clienteServicio.service';
+import { TablaClientesComponent } from '../tablaClientes/tablaClientes.component';
+import { TipoIdentificacion } from '../TipoIdentificacion';
 
 @Component({
   selector: 'app-formularioClientes',
   templateUrl: './formularioClientes.component.html',
-  styleUrls: ['./formularioClientes.component.css']
+  styleUrls: ['./formularioClientes.component.css'],
 })
 export class FormularioClientesComponent implements OnInit {
+  tipo: string;
 
-  constructor() { }
+  @Input() public set clienteEnviar(val: Cliente) {
+    if (val) {
+      this.idCliente = val.cliente;
+      this.tipoIdId = val.tipoIdentificacion.tipoIdentificacion;
+      this.tipoId = val.tipoIdentificacion;
+      this.id = val.identificacion;
+      this.razonSocial = val.razonSocial;
+      this.estado = val.estado;
 
-  ngOnInit() {
+      this.tipo = 'modificar';
+    } else {
+      this.tipo = 'añadir';
+    }
   }
 
+  constructor(private serv: ClienteServicioService, private router: Router) {}
+
+  ngOnInit() {
+    this.serv.obetenerTiposIden().subscribe((dato) => {
+      this.tiposIden = dato;
+    });
+  }
+
+  tiposIden: TipoIdentificacion[];
+  tipoIdId: number;
+  tipoId: TipoIdentificacion;
+  id: string = '';
+  razonSocial: string;
+  fechaRegistro: Date;
+  estado: string;
+  idCliente: number;
+
+  agregarCliente() {
+    this.tipoId = this.tiposIden.find(
+      (i) => i.tipoIdentificacion == this.tipoIdId
+    )!;
+    let cliente: Cliente = new Cliente(
+      0,
+      this.tipoId,
+      this.id,
+      this.razonSocial,
+      this.fechaRegistro,
+      this.estado
+    );
+    this.serv.agregarNuevo(cliente).subscribe((dato) => {});
+    this.id = '';
+    this.razonSocial = '';
+    this.fechaRegistro;
+    this.estado = '';
+    window.location.reload();
+  }
+
+  actualizar() {
+    this.tipoId = this.tiposIden.find(
+      (i) => i.tipoIdentificacion == this.tipoIdId
+    )!;
+    let cliente: Cliente = new Cliente(
+      this.idCliente,
+      this.tipoId,
+      this.id,
+      this.razonSocial,
+      this.fechaRegistro,
+      this.estado
+    );
+    this.serv.modificar(cliente).subscribe((dato) => {});
+    this.id = '';
+    this.razonSocial = '';
+    this.fechaRegistro;
+    this.estado = '';
+
+    window.location.reload();
+  }
 }

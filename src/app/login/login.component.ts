@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
     this.serv.loginUsuario(userLogin).subscribe(
       (dato) => {
         this.usu = dato;
-        if (this.usu.usuario === 'Administrador') {
+        if (this.usu.perfil === 'Administrador') {
           this.router.navigate(['admin']);
-        } else if (this.usu.usuario === 'Cajero') {
+        } else if (this.usu.perfil === 'Cajero') {
           this.router.navigate(['cajero']);
         }
       },

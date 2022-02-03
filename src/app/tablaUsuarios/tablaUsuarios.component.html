@@ -1,0 +1,38 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">usuario</th>
+      <th scope="col">Perfil</th>
+      <th scope="col">Modificar</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of usuarios; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ user.nombre }}</td>
+      <td>{{ user.apellido }}</td>
+      <td>{{ user.usuario }}</td>
+      <td>{{ user.perfil }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="cargarDatosDelUsuario(user.idUsuario)"
+        >
+          Modificar
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-danger"
+          (click)="eliminarUsuario(user.idUsuario)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

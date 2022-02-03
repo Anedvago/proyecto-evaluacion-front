@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h5>Cantidad del articulo</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <form class="row">
+          <div class="col-5">
+            <label for="exampleInputEmail1" class="form-label">Cantidad</label>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="cantidad"
+              name="id"
+            />
+          </div>
+          <div class="col">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="enviarCantidad()"
+            >
+              Establecer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

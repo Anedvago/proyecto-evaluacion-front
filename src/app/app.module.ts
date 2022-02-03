@@ -12,17 +12,37 @@ import { BarraNavegacionComponent } from './barraNavegacion/barraNavegacion.comp
 import { ModuloAdminClienteComponent } from './moduloAdminCliente/moduloAdminCliente.component';
 import { TablaClientesComponent } from './tablaClientes/tablaClientes.component';
 import { FormularioClientesComponent } from './formularioClientes/formularioClientes.component';
+import { ModuloAdminProductosComponent } from './moduloAdminProductos/moduloAdminProductos.component';
+import { FormularioProductosComponent } from './formularioProductos/formularioProductos.component';
+import { TablaProductosComponent } from './tablaProductos/tablaProductos.component';
+import { ModuloAdminUsuariosComponent } from './moduloAdminUsuarios/moduloAdminUsuarios.component';
+import { FormularioUsuariosComponent } from './formularioUsuarios/formularioUsuarios.component';
+import { TablaUsuariosComponent } from './tablaUsuarios/tablaUsuarios.component';
+import { FacturacionComponent } from './facturacion/facturacion.component';
+import { BuscadorClientesComponent } from './buscadorClientes/buscadorClientes.component';
+import { BuscadorProductosComponent } from './buscadorProductos/buscadorProductos.component';
+import { FormCantProdComponent } from './formCantProd/formCantProd.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [					
     AppComponent,
     LoginComponent,
     ModuloAdminComponent,
     ModuloCajeroComponent,
     BarraNavegacionComponent,
-      ModuloAdminClienteComponent,
-      TablaClientesComponent,
-      FormularioClientesComponent
+    ModuloAdminClienteComponent,
+    TablaClientesComponent,
+    FormularioClientesComponent,
+    ModuloAdminProductosComponent,
+    FormularioProductosComponent,
+    TablaProductosComponent,
+    ModuloAdminUsuariosComponent,
+    FormularioUsuariosComponent,
+      TablaUsuariosComponent,
+      FacturacionComponent,
+      BuscadorClientesComponent,
+      BuscadorProductosComponent,
+      FormCantProdComponent
    ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

@@ -1,0 +1,15 @@
+<app-barraNavegacion></app-barraNavegacion>
+<div class="container-fluid">
+  <div class="row">
+    <div class="card col-3">
+      <app-formularioProductos
+        [productoEnviar]="producto"
+      ></app-formularioProductos>
+    </div>
+    <div class="card col tabla">
+      <app-tablaProductos
+        (enviarProducto)="recibirProducto($event)"
+      ></app-tablaProductos>
+    </div>
+  </div>
+</div>

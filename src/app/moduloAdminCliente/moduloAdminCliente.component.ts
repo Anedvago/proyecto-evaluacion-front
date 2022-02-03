@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cliente } from '../Cliente';
 
 @Component({
   selector: 'app-moduloAdminCliente',
   templateUrl: './moduloAdminCliente.component.html',
-  styleUrls: ['./moduloAdminCliente.component.css']
+  styleUrls: ['./moduloAdminCliente.component.css'],
 })
 export class ModuloAdminClienteComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  cliente: Cliente;
+
+  recibirCliente(val: Cliente) {
+    this.cliente = val;
   }
-
 }

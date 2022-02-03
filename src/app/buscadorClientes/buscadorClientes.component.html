@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h5>Busqueda de clientes</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <form class="row">
+          <div class="col">
+            <label for="exampleInputEmail1" class="form-label"
+              >Tipo de identificacion</label
+            >
+            <select
+              [(ngModel)]="tipoIdId"
+              name="tipoId"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option
+                [value]="opcion.tipoIdentificacion"
+                *ngFor="let opcion of tiposIden"
+              >
+                <p>{{ opcion.descripcion }}</p>
+              </option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="exampleInputEmail1" class="form-label"
+              >Identificacion</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="id"
+              name="id"
+            />
+          </div>
+          <div class="col">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="buscarCliente()"
+            >
+              Buscar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {{ mensaje }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h3>Pagina de facturacion</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-buscadorClientes
+        (enviarCliente)="recibirCliente($event)"
+      ></app-buscadorClientes>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-buscadorProductos
+        (enviarProducto)="recibirProducto($event)"
+      ></app-buscadorProductos>
+    </div>
+    <div class="col">
+      <app-formCantProd (enviarCant)="recibirCant($event)"></app-formCantProd>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h6>Factura a nombre de:</h6>
+            </div>
+            <div class="col">
+              <span *ngIf="clientExist === true">
+                {{ cliente.razonSocial }}
+              </span>
+            </div>
+            <div class="col">
+              <h6>Identificacion:</h6>
+            </div>
+            <div class="col">
+              <span *ngIf="clientExist === true">
+                {{ cliente.identificacion }}
+              </span>
+            </div>
+            <div class="col">
+              <h6>Fecha:</h6>
+            </div>
+            <div class="col">
+              <h6>{{ fecha.toISOString().substr(0, 10) }}</h6>
+            </div>
+          </div>
+          <div row>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Referencia</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Valor unitario</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col">Quitar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let producto of productos; index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ producto.producto.id }}</td>
+                  <td>{{ producto.producto.nombre }}</td>
+                  <td>{{ producto.producto.valorUnitario }}</td>
+                  <td>{{ producto.cantidad }}</td>
+                  <td>{{ producto.subtotal }}</td>
+                  <td>
+                    <button class="btn btn-danger" (click)="quitarArticulo(i)">
+                      Quitar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>total</td>
+                  <td>{{ total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

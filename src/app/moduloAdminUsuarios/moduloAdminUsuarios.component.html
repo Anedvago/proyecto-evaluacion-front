@@ -1,0 +1,15 @@
+<app-barraNavegacion></app-barraNavegacion>
+<div class="container-fluid">
+  <div class="row">
+    <div class="card col-3">
+      <app-formularioUsuarios
+        [usuarioEnviar]="usuario"
+      ></app-formularioUsuarios>
+    </div>
+    <div class="card col tabla">
+      <app-tablaUsuarios
+        (enviarUsuario)="recibirUsuario($event)"
+      ></app-tablaUsuarios>
+    </div>
+  </div>
+</div>

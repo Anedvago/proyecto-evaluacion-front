@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Referencia</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Valor unitario</th>
+      <th scope="col">Modificar</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productos; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ producto.id }}</td>
+      <td>{{ producto.nombre }}</td>
+      <td>{{ producto.estado }}</td>
+      <td>{{ producto.valorUnitario }}</td>
+      <td>
+        <button
+          class="btn btn-primary"
+          (click)="cargarDatosDeProducto(producto.id)"
+        >
+          Modificar
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="eliminarProducto(producto.id)">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

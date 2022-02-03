@@ -1,0 +1,85 @@
+<form class="formulario row">
+  <div class="col">
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nombre"
+          name="nombre"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label">Apellido</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="apellido"
+          name="apellido"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label"
+          >Tipo de usuario</label
+        >
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          [(ngModel)]="perfil"
+          name="usuario"
+        >
+          <option value="Administrador">Administrador</option>
+          <option value="Cajero">Cajero</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label"
+          >Nombre de perfil</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="usuario"
+          name="nombrePerfil"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="exampleInputEmail1" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          [(ngModel)]="contrasena"
+          name="contrasena"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <button
+          class="btn btn-primary"
+          (click)="agregarNuevo()"
+          *ngIf="tipo === 'añadir'"
+        >
+          Añadir
+        </button>
+        <button
+          *ngIf="tipo === 'modificar'"
+          class="btn btn-primary"
+          (click)="agregarNuevo()"
+        >
+          Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

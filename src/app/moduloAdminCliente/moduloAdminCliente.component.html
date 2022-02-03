@@ -2,10 +2,14 @@
 <div class="container-fluid">
   <div class="row">
     <div class="card col-3">
-      <app-formularioClientes></app-formularioClientes>
+      <app-formularioClientes
+        [clienteEnviar]="cliente"
+      ></app-formularioClientes>
     </div>
     <div class="card col tabla">
-      <app-tablaClientes></app-tablaClientes>
+      <app-tablaClientes
+        (enviarCliente)="recibirCliente($event)"
+      ></app-tablaClientes>
     </div>
   </div>
 </div>

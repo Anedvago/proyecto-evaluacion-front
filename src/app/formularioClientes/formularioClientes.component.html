@@ -5,11 +5,18 @@
         <label for="exampleInputEmail1" class="form-label"
           >Tipo de identificacion</label
         >
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Escoja una opcion</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <select
+          [(ngModel)]="tipoIdId"
+          name="tipoId"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option
+            [value]="opcion.tipoIdentificacion"
+            *ngFor="let opcion of tiposIden"
+          >
+            <p>{{ opcion.descripcion }}</p>
+          </option>
         </select>
       </div>
     </div>
@@ -18,22 +25,17 @@
         <label for="exampleInputEmail1" class="form-label"
           >Identificacion</label
         >
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-        />
+        <input type="text" class="form-control" [(ngModel)]="id" name="id" />
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
         <label for="exampleInputEmail1" class="form-label">Razon social</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
+          [(ngModel)]="razonSocial"
+          name="razonSocial"
         />
       </div>
     </div>
@@ -43,10 +45,10 @@
           >Fecha de registro</label
         >
         <input
-          type="email"
+          type="date"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
+          [(ngModel)]="fechaRegistro"
+          name="fechaRegistro"
         />
       </div>
     </div>
@@ -54,16 +56,35 @@
       <div class="col">
         <label for="exampleInputEmail1" class="form-label">Estado</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
+          [(ngModel)]="estado"
+          name="estado"
         />
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <button type="submit" class="btn btn-primary">Añadir</button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="agregarCliente()"
+          *ngIf="tipo === 'añadir'"
+        >
+          Añadir
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="actualizar()"
+          *ngIf="tipo === 'modificar'"
+        >
+          Actualizar
+        </button>
       </div>
     </div>
   </div>

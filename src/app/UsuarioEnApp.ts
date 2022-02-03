@@ -1,12 +1,10 @@
-import { Perfil } from './Perfil';
-
 export class UsuarioEnApp {
   idUsuario: number;
   nombre: string;
   apellido: string;
   usuario: string;
   contraseña: string;
-  idPerfil: Perfil;
+  perfil: string;
 
   constructor(
     idUsuario: number,
@@ -14,13 +12,13 @@ export class UsuarioEnApp {
     apellido: string,
     usuario: string,
     contraseña: string,
-    idPerfil: Perfil
+    perfil: string
   ) {
     this.idUsuario = idUsuario;
     this.nombre = nombre;
     this.apellido = apellido;
     this.usuario = usuario;
     this.contraseña = contraseña;
-    this.idPerfil = idPerfil;
+    this.perfil = perfil;
   }
 }
