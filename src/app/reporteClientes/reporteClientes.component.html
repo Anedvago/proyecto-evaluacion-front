@@ -1,0 +1,25 @@
+<app-barraNavegacion></app-barraNavegacion>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Año</th>
+            <th scope="col">CodCliente</th>
+            <th scope="col">Razon social</th>
+            <th scope="col">Valor comprado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detalle of detallesReporte; index as i">
+            <th scope="row">{{ detalle.ano }}</th>
+            <td>{{ detalle.idCli }}</td>
+            <td>{{ detalle.nombre }}</td>
+            <td>{{ detalle.valor }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

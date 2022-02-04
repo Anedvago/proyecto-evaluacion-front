@@ -9,6 +9,7 @@ import { ModuloAdminClienteComponent } from './moduloAdminCliente/moduloAdminCli
 import { ModuloAdminProductosComponent } from './moduloAdminProductos/moduloAdminProductos.component';
 import { ModuloAdminUsuariosComponent } from './moduloAdminUsuarios/moduloAdminUsuarios.component';
 import { ModuloCajeroComponent } from './moduloCajero/moduloCajero.component';
+import { ReporteClientesComponent } from './reporteClientes/reporteClientes.component';
 import { ReporteProductosComponent } from './reporteProductos/reporteProductos.component';
 
 const routes: Routes = [
@@ -42,6 +43,11 @@ const routes: Routes = [
     path: 'admin/reportes-productos',
     canActivate: [CanActivateGuard],
     component: ReporteProductosComponent,
+  },
+  {
+    path: 'admin/reportes-clientes',
+    canActivate: [CanActivateGuard],
+    component: ReporteClientesComponent,
   },
 ];
 

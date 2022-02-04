@@ -18,4 +18,8 @@ export class DetalleService {
   obtenerReporteProd(): Observable<[]> {
     return this.clienteHttp.get<[]>(this.url + '/reporte-productos');
   }
+
+  obtenerReporteCli(): Observable<[]> {
+    return this.clienteHttp.get<[]>(this.url + '/reporte-clientes');
+  }
 }

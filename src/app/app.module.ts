@@ -24,9 +24,10 @@ import { BuscadorProductosComponent } from './buscadorProductos/buscadorProducto
 import { FormCantProdComponent } from './formCantProd/formCantProd.component';
 import { FacturaPDFComponent } from './FacturaPDF/FacturaPDF.component';
 import { ReporteProductosComponent } from './reporteProductos/reporteProductos.component';
+import { ReporteClientesComponent } from './reporteClientes/reporteClientes.component';
 
 @NgModule({
-  declarations: [							
+  declarations: [								
     AppComponent,
     LoginComponent,
     ModuloAdminComponent,
@@ -46,7 +47,8 @@ import { ReporteProductosComponent } from './reporteProductos/reporteProductos.c
       BuscadorProductosComponent,
       FormCantProdComponent,
       FacturaPDFComponent,
-      ReporteProductosComponent
+      ReporteProductosComponent,
+      ReporteClientesComponent
    ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
