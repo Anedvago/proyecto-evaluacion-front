@@ -12,4 +12,8 @@ export class DetalleService {
   agregarNuevo(detalle: Detalle) {
     return this.clienteHttp.post(this.url + '/registro-detalles', detalle);
   }
+
+  obtenerReporteProd() {
+    return this.clienteHttp.get(this.url + '/reporte-productos');
+  }
 }

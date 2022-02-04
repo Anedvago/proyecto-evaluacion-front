@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { UsuarioEnApp } from '../UsuarioEnApp';
 import { UsuarioServicioService } from '../usuarioServicio.service';
 
@@ -8,6 +9,7 @@ import { UsuarioServicioService } from '../usuarioServicio.service';
   styleUrls: ['./formularioUsuarios.component.css'],
 })
 export class FormularioUsuariosComponent implements OnInit {
+  @Output() enviaruserAdd = new EventEmitter<UsuarioEnApp>();
   userNew: UsuarioEnApp;
 
   @Input() public set usuarioEnviar(val: UsuarioEnApp) {
@@ -50,7 +52,14 @@ export class FormularioUsuariosComponent implements OnInit {
       this.perfil
     );
 
-    this.serv.agregarNuevo(user).subscribe((dato) => {});
-    window.location.reload();
+    this.serv.agregarNuevo(user).subscribe((dato) => {
+      user.idUsuario = dato.idUsuario;
+    });
+    this.enviaruserAdd.emit(user);
+    this.nombre = '';
+    this.apellido = '';
+    this.usuario = '';
+    this.contrasena = '';
+    this.perfil = '';
   }
 }

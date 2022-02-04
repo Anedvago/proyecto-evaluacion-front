@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <table class="table" id="htmlData" id="htmlData">
+          <thead>
+            <tr>
+              <th scope="col">Factura numero: {{ numFactura }}</th>
+              <th scope="col">
+                Fecha: {{ fecha.toISOString().substr(0, 10) }}
+              </th>
+            </tr>
+            <tr>
+              <th scope="col">identificacion del titular: {{ idTitu }}</th>
+              <th scope="col">Razon social: {{ titu }}</th>
+            </tr>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Valor unitario</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productos; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{ producto.producto.nombre }}</td>
+              <td>{{ producto.producto.valorUnitario }}</td>
+              <td>{{ producto.cantidad }}</td>
+              <td>{{ producto.subtotal }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total:</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{{ total }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" (click)="imprimirFactura()">
+          Imprimir factura
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

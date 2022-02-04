@@ -4,11 +4,13 @@
     <div class="card col-3">
       <app-formularioProductos
         [productoEnviar]="producto"
+        (enviarProdAdd)="recibirClienteAdd($event)"
       ></app-formularioProductos>
     </div>
     <div class="card col tabla">
       <app-tablaProductos
         (enviarProducto)="recibirProducto($event)"
+        [productos]="productos"
       ></app-tablaProductos>
     </div>
   </div>

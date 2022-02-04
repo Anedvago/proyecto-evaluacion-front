@@ -28,8 +28,11 @@ export class ClienteServicioService {
     );
   }
 
-  agregarNuevo(cliente: Cliente) {
-    return this.clienteHttp.post(this.url + '/registro-clientes', cliente);
+  agregarNuevo(cliente: Cliente): Observable<Cliente> {
+    return this.clienteHttp.post<Cliente>(
+      this.url + '/registro-clientes',
+      cliente
+    );
   }
 
   modificar(cliente: Cliente) {

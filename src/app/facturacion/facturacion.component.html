@@ -77,14 +77,16 @@
                   </td>
                 </tr>
               </tbody>
-            </table>
-            <table class="table">
-              <tbody>
+              <tfoot>
                 <tr>
-                  <td>total</td>
+                  <td>Total:</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
                   <td>{{ total }}</td>
                 </tr>
-              </tbody>
+              </tfoot>
             </table>
           </div>
           <div class="row">
@@ -94,8 +96,37 @@
               </button>
             </div>
           </div>
+          <div class="row" *ngIf="cliEscNo == false">
+            <div class="col">
+              <br />
+              <div class="alert alert-danger" role="alert">
+                Escoja un cliente
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="prodEscNo == false">
+            <div class="col">
+              <br />
+              <div class="alert alert-danger" role="alert">
+                Ingrese los articulos de la factura
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-FacturaPDF
+        *ngIf="facturaLista === true"
+        [numFactura]="factura.consecutivo"
+        [idTitu]="cliente.identificacion"
+        [titu]="cliente.razonSocial"
+        [fecha]="fecha"
+        [productos]="productos"
+        [total]="total"
+      ></app-FacturaPDF>
     </div>
   </div>
 </div>

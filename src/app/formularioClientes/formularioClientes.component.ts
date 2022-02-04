@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 import { Cliente } from '../Cliente';
 import { ClienteServicioService } from '../clienteServicio.service';
 import { TablaClientesComponent } from '../tablaClientes/tablaClientes.component';
@@ -12,8 +13,8 @@ import { TipoIdentificacion } from '../TipoIdentificacion';
   styleUrls: ['./formularioClientes.component.css'],
 })
 export class FormularioClientesComponent implements OnInit {
+  @Output() enviarClienteAdd = new EventEmitter<Cliente>();
   tipo: string;
-
   @Input() public set clienteEnviar(val: Cliente) {
     if (val) {
       this.idCliente = val.cliente;
@@ -58,12 +59,16 @@ export class FormularioClientesComponent implements OnInit {
       this.fechaRegistro,
       this.estado
     );
-    this.serv.agregarNuevo(cliente).subscribe((dato) => {});
+
+    this.serv.agregarNuevo(cliente).subscribe((dato) => {
+      cliente.cliente = dato.cliente;
+    });
+    this.enviarClienteAdd.emit(cliente);
+
     this.id = '';
     this.razonSocial = '';
     this.fechaRegistro;
     this.estado = '';
-    window.location.reload();
   }
 
   actualizar() {
@@ -78,12 +83,11 @@ export class FormularioClientesComponent implements OnInit {
       this.fechaRegistro,
       this.estado
     );
+    this.enviarClienteAdd.emit(cliente);
     this.serv.modificar(cliente).subscribe((dato) => {});
     this.id = '';
     this.razonSocial = '';
     this.fechaRegistro;
     this.estado = '';
-
-    window.location.reload();
   }
 }

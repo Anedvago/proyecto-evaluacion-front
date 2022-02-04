@@ -1,4 +1,3 @@
-import { getLocaleDateFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ArticuloFact } from '../ArticuloFact';
 import { Cliente } from '../Cliente';
@@ -35,6 +34,7 @@ export class FacturacionComponent implements OnInit {
   fecha: Date = new Date();
 
   factura: Factura;
+  facturaLista: boolean = false;
 
   establecerTotal() {
     let suma: number = 0;
@@ -69,24 +69,37 @@ export class FacturacionComponent implements OnInit {
     this.establecerTotal();
   }
 
+  cliEscNo: boolean = true;
+  prodEscNo: boolean = true;
+
   guardarFactura() {
     let fact01 = new Factura(this.cliente, this.fecha);
     let detalle;
-    this.serv.agregarNueva(fact01).subscribe(
-      (dato) => {
-        this.factura = dato;
-        for (let i = 0; i < this.productos.length; i++) {
-          detalle = new Detalle(
-            this.factura,
-            this.productos[i].producto,
-            this.productos[i].cantidad
-          );
-          this.serv2.agregarNuevo(detalle).subscribe((dato) => {});
+    if (this.productos.length != 0) {
+      this.prodEscNo = true;
+      this.cliEscNo = true;
+      this.serv.agregarNueva(fact01).subscribe(
+        (dato) => {
+          this.factura = dato;
+          for (let i = 0; i < this.productos.length; i++) {
+            detalle = new Detalle(
+              this.factura,
+              this.productos[i].producto,
+              this.productos[i].cantidad
+            );
+            this.serv2.agregarNuevo(detalle).subscribe(
+              (dato) => {},
+              (error) => {}
+            );
+            this.facturaLista = true;
+          }
+        },
+        (error) => {
+          this.cliEscNo = false;
         }
-      },
-      (error) => {
-        alert('error en el sistema');
-      }
-    );
+      );
+    } else {
+      this.prodEscNo = false;
+    }
   }
 }

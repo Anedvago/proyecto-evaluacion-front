@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Producto } from '../Producto';
 import { ProductoService } from '../producto.service';
 
@@ -8,6 +9,7 @@ import { ProductoService } from '../producto.service';
   styleUrls: ['./formularioProductos.component.css'],
 })
 export class FormularioProductosComponent implements OnInit {
+  @Output() enviarProdAdd = new EventEmitter<Producto>();
   producto: Producto;
 
   @Input() public set productoEnviar(val: Producto) {
@@ -43,7 +45,7 @@ export class FormularioProductosComponent implements OnInit {
       this.estado,
       this.valorUnitario
     );
+    this.enviarProdAdd.emit(prod);
     this.serv.agregarNuevo(prod).subscribe((dato) => {});
-    window.location.reload();
   }
 }

@@ -35,6 +35,14 @@
               </button>
             </div>
           </div>
+          <br />
+          <div *ngIf="error == true" class="row">
+            <div class="col">
+              <div class="alert alert-danger" role="alert">
+                El usuario o la contraseña son incorrectos
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     </div>

@@ -1,4 +1,11 @@
-import { Component, NgZone, OnInit, Output, Renderer2 } from '@angular/core';
+import {
+  Component,
+  Input,
+  NgZone,
+  OnInit,
+  Output,
+  Renderer2,
+} from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Cliente } from '../Cliente';
 import { ClienteServicioService } from '../clienteServicio.service';
@@ -11,30 +18,21 @@ import { TipoIdentificacion } from '../TipoIdentificacion';
 })
 export class TablaClientesComponent implements OnInit {
   @Output() enviarCliente = new EventEmitter<Cliente>();
+  @Input() clientes: Cliente[];
+  constructor(private ser: ClienteServicioService) {}
 
-  constructor(
-    private ser: ClienteServicioService,
-    private renderer: Renderer2
-  ) {}
-
-  ngOnInit() {
-    this.cargarClientes();
-  }
-
-  clientes: Cliente[];
-
-  cargarClientes() {
-    this.ser.obtenerClientes().subscribe((dato) => {
-      this.clientes = dato;
-    });
-  }
+  ngOnInit() {}
 
   cargarDatosDeCliente(id: number) {
     this.enviarCliente.emit(this.clientes.find((i) => i.cliente === id));
   }
 
   eliminarCliente(id: number) {
+    for (let i = 0; i < this.clientes.length; i++) {
+      if (this.clientes[i].cliente == id) {
+        this.clientes.splice(i, 1);
+      }
+    }
     this.ser.eliminar(id).subscribe((dato) => {});
-    window.location.reload();
   }
 }
