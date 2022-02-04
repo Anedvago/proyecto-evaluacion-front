@@ -1,3 +1,29 @@
-<p>
-  reporteProductos works!
-</p>
+<app-barraNavegacion></app-barraNavegacion>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#Ref</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Valor unitario</th>
+            <th scope="col">Total recaudado</th>
+            <th scope="col">Mes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detalle of detallesReporte; index as i">
+            <th scope="row">{{ detalle.idProd }}</th>
+            <td>{{ detalle.nombreProd }}</td>
+            <td>{{ detalle.cantidad }}</td>
+            <td>{{ detalle.valorUni }}</td>
+            <td>{{ detalle.valorUni * detalle.cantidad }}</td>
+            <td>{{ detalle.mes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

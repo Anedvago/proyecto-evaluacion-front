@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Detalle } from './Detalle';
+import { ElemReporteProd } from './ElemReporteProd';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,7 @@ export class DetalleService {
     return this.clienteHttp.post(this.url + '/registro-detalles', detalle);
   }
 
-  obtenerReporteProd() {
-    return this.clienteHttp.get(this.url + '/reporte-productos');
+  obtenerReporteProd(): Observable<[]> {
+    return this.clienteHttp.get<[]>(this.url + '/reporte-productos');
   }
 }
